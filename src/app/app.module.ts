@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
+import { AuthGuard } from './auth.service';
+import { routes } from './app.routes';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyB8tQxJBKpLc_u_p78jEQIbJk-MdbGWlL0',
@@ -30,9 +31,10 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+     routes
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
